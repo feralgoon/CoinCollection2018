@@ -1,6 +1,5 @@
 package com.arkansascodingacademy;
 
-
 import java.math.BigDecimal;
 
 public class Main
