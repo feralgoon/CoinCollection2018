@@ -2,7 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class One
+public class One implements ICurrency
 {
     private final int SERIAL_NUMBER;
     private final int YEAR;
@@ -24,11 +24,19 @@ public class One
         }
     }
 
+    @Override
     public BigDecimal getCollectibleValue()
     {
         return COLLECTIBLE_VALUE;
     }
 
+    @Override
+    public String getName()
+    {
+        return " One Dollar Bill";
+    }
+
+    @Override
     public BigDecimal getFaceValue()
     {
         return FACE_VALUE;

@@ -2,7 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Dime
+public class Dime implements ICurrency
 {
     private final BigDecimal FACE_VALUE;
 
@@ -22,5 +22,11 @@ public class Dime
     public BigDecimal getCollectibleValue()
     {
         return getFaceValue();
+    }
+
+    @Override
+    public String getName()
+    {
+        return "Dime";
     }
 }

@@ -2,6 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class CoinCollection
@@ -169,6 +170,18 @@ public class CoinCollection
         return result;
     }
 
+    public BigDecimal getCollectibleValue(Collection<? extends ICurrency> c)
+    {
+        BigDecimal result = new BigDecimal("0.00");
+
+        for(ICurrency currency : c)
+        {
+            result = result.add(currency.getCollectibleValue());
+        }
+
+        return result;
+    }
+
     public BigDecimal getFaceValue()
     {
         BigDecimal result = getQuartersFaceValue();
@@ -180,6 +193,18 @@ public class CoinCollection
         result = result.add(getTensFaceValue());
         result = result.add(getFivesFaceValue());
         result = result.add(getOnesFaceValue());
+
+        return result;
+    }
+
+    public BigDecimal getFaceValue(Collection<? extends ICurrency> c)
+    {
+        BigDecimal result = new BigDecimal("0.00");
+
+        for(ICurrency currency : c)
+        {
+            result = result.add(currency.getFaceValue());
+        }
 
         return result;
     }
@@ -233,162 +258,92 @@ public class CoinCollection
 
     public BigDecimal getHundredsCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(Hundred i : hundredsList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(hundredsList);
     }
 
     public BigDecimal getTwentiesCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(Twenty i : twentiesList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(twentiesList);
     }
 
     public BigDecimal getTensCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(Ten i : tensList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(tensList);
     }
 
     public BigDecimal getFivesCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(Five i : fivesList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(fivesList);
     }
 
     public BigDecimal getOnesCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(One i : onesList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(onesList);
     }
 
     public BigDecimal getQuartersCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(Quarter i : quarterList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(quarterList);
     }
 
     public BigDecimal getDimesCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(Dime i : dimeList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(dimeList);
     }
 
     public BigDecimal getNickelsCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(Nickel i : nickelList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(nickelList);
     }
 
     public BigDecimal getPenniesCollectibleValue()
     {
-        BigDecimal result = new BigDecimal("0.0");
-        for(Penny i : pennyList)
-        {
-            result = result.add(i.getCollectibleValue());
-        }
-        return result;
+        return getCollectibleValue(pennyList);
     }
 
     public BigDecimal getHundredsFaceValue()
     {
-        BigDecimal result = new BigDecimal("0.00");
-        if (hundredsList.size() > 0)
-        {
-            result = hundredsList.get(0).getFaceValue().multiply(new BigDecimal("" + hundredsList.size()));
-        }
-        return result;
+        return getFaceValue(hundredsList);
     }
 
     public BigDecimal getTwentiesFaceValue()
     {
-        BigDecimal result = new BigDecimal("0.00");
-        if (twentiesList.size() > 0)
-        {
-            result = twentiesList.get(0).getFaceValue().multiply(new BigDecimal("" + twentiesList.size()));
-        }
-        return result;
+        return getFaceValue(twentiesList);
     }
 
     public BigDecimal getTensFaceValue()
     {
-        BigDecimal result = new BigDecimal("0.00");
-        if (tensList.size() > 0)
-        {
-            result = tensList.get(0).getFaceValue().multiply(new BigDecimal("" + tensList.size()));
-        }
-        return result;
+        return getFaceValue(tensList);
     }
 
     public BigDecimal getFivesFaceValue()
     {
-        BigDecimal result = new BigDecimal("0.00");
-        if (fivesList.size() > 0)
-        {
-            result = fivesList.get(0).getFaceValue().multiply(new BigDecimal("" + fivesList.size()));
-        }
-        return result;
+        return getFaceValue(fivesList);
     }
 
     public BigDecimal getOnesFaceValue()
     {
-        BigDecimal result = new BigDecimal("0.00");
-        if (onesList.size() > 0)
-        {
-            result = onesList.get(0).getFaceValue().multiply(new BigDecimal("" + onesList.size()));
-        }
-        return result;
+        return getFaceValue(onesList);
     }
 
     public BigDecimal getQuartersFaceValue()
     {
-        return quarterList.get(0).getFaceValue().multiply(new BigDecimal("" + quarterList.size()));
+        return getFaceValue(quarterList);
     }
 
     public BigDecimal getDimesFaceValue()
     {
-        return dimeList.get(0).getFaceValue().multiply(new BigDecimal("" + dimeList.size()));
+        return getFaceValue(dimeList);
     }
 
     public BigDecimal getNickelsFaceValue()
     {
-        return nickelList.get(0).getFaceValue().multiply(new BigDecimal("" + nickelList.size()));
+        return getFaceValue(nickelList);
     }
 
     public BigDecimal getPenniesFaceValue()
     {
-        return pennyList.get(0).getFaceValue().multiply(new BigDecimal("" + pennyList.size()));
+        return getFaceValue(pennyList);
     }
 
     public void addQuarter(int year)
