@@ -2,15 +2,13 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Dime implements ICurrency
+public class Dime extends Coin implements ICurrency
 {
     private final BigDecimal FACE_VALUE;
 
-    private int yearMinted;
-
     public Dime(int year)
     {
-        this.yearMinted = year;
+        super(year);
         this.FACE_VALUE = new BigDecimal("0.10");
     }
 
